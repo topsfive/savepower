@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 5 Power Savers of 2025</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
+    <style>
+        .content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .banner {
+            background-color: #02cf57;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .product-ranking {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .product-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 20px 1px rgb(84 84 84 / 30%);
+      margin-bottom: 30px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      position: relative;
+      box-sizing: border-box;
+      animation: fadeInUp 1s;
+    }
+    .product-best{
+      margin: 0;
+      padding: 20px;
+      background-color: #9b1717;
+      color: #FFFFFF;
+      text-align: center;
+      border-top-left-radius: 20px;  /* 左上角圆弧 */
+      border-top-right-radius: 20px; /* 右上角圆弧 */
+    }
+  
+    .first-place {
+      border: 4px solid #3bd11c; /* 第一名的边框颜色 */
+    }
+  
+    /* 排名序号 */
+    .ranking-number {
+      font-size: 24px;
+      font-weight: bold;
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      color: #004cdd;
+      background-color: #fff; /* 圆圈的背景颜色 */
+      border-radius: 50%; /* 设置为圆形 */
+      width: 40px; /* 设置圆圈的宽度 */
+      height: 40px; /* 设置圆圈的高度 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 3px solid #004cdd; /* 圆圈的边框 */
+    }
+  
+    /* 控制每个部分的占比 */
+    .product-section {
+      padding: 10px;
+      box-sizing: border-box;
+      border-right: 1px solid #ddd;
+      text-align: center;
+    }
+  
+    .product-section:last-child {
+      border-right: none; /* 移除最后一个部分的右边框 */
+    }
+  
+  .product-section:nth-child(2) {
+      flex: 0 0 20%; /* 设置product-image占比30% */
+  }
+  
+  .product-section:nth-child(3) {
+      flex: 1; /* 设置product-info占比余下的 */
+  }
+  
+  .product-section:nth-child(4) {
+      flex: 0 0 25%; /* 设置product-rating占比30% */
+  }
+  
+    .product-image {
+      flex: 0 0 20%; /* 20% 占比 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .product-image img {
+      width: 100%;
+      object-fit: cover;
+    }
+  
+    .product-info {
+      flex: 1; /* 让product-info占据剩余的可用空间 */
+      margin-left: 20px;
+      text-align: center;
+      padding: 10px; /* 添加内边距 */
+      box-sizing: border-box; /* 确保内边距和边框包含在高度和宽度内 */
+      height: 100%; /* 确保高度覆盖整个父容器 */
+    }
+  
+    .product-info::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 1px;
+      background-color: #ddd; /* 边框颜色 */
+    }
+  
+    .product-info h3 {
+      margin: 0 0 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    .product-description {
+      list-style-type: none;
+      padding: 0;
+      text-align: left;
+      column-count: 2; /* 设置为两列布局 */
+    }
+  
+    .product-description li {
+      display: flex;
+      padding: 5px; /* 添加内边距 */
+      margin-bottom: 5px; /* 添加底部外边距 */
+    }
+  
+    .checkmark {
+      color: green;
+      margin-right: 8px;
+    }
+  
+    .product-rating {
+      flex: 0 0 20%; /* 20% 占比 */
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+  
+    .stars i {
+      font-size: 18px;
+      color: #FFD700;
+      cursor: pointer;
+    }
+  
+    .stars i:hover {
+      color: #FFB700;
+    }
+  
+    .buy-button {
+      width: 90%;
+      padding: 15px 15px;
+      background: linear-gradient(45deg, #4CAF50, #45a049);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+      transition: background 0.3s ease;
+    }
+  
+    .buy-button:hover {
+      background: linear-gradient(45deg, #45a049, #4CAF50);
+    }
+  
+    /* 最好的标记 */
+    .best-label {
+      position: absolute;
+      top: -30px;
+      right: 2px;
+    }
+  
+    .best-label img {
+      height: 47px;
+      margin-top: -35px;
+    }
+  
+    .product-rating h1 {
+      margin: 0; /* 移除默认的上下间距 */
+      font-size: 60px;
+    }
+  
+    .product-rating p {
+      margin: 0; /* 设置 p 标签的上间距为 5px，去除下间距 */
+    }
+    .product-best.mobile-layout{
+    display: none;
+    }
+  
+    @media (max-width: 768px) {
+      .product-item {
+        display: none; /* 隐藏桌面端的布局 */
+      }
+      
+      .product-rating {
+        flex: 0 0 50%; /* 20% 占比 */
+        margin-top: 10px;
+      }
+      .product-image {
+        flex: 0 0 50%; /* 20% 占比 */
+        border-right: 1px solid #ddd;
+      }
+      .mobile-layout {
+        display: block; /* 显示移动端的布局 */
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        position: relative;
+      }
+  
+      .mobile-image-rating {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        padding-bottom: 10px; /* 添加内边距 */
+      }
+  
+      .mobile-layout h3 {
+        text-align: center;
+        margin: 10px 0 10px 0;
+        padding-bottom: 10px; /* 添加内边距 */
+        border-bottom: 1px solid #ddd;
+      }
+  
+      .mobile-layout .product-description {
+        text-align: left;
+        margin-bottom: 10px;
+        column-count: 1;
+        padding-bottom: 10px; /* 添加内边距 */
+      }
+  
+      .mobile-layout .buy-button {
+        display: block;
+        width: 100%;
+      }
+  
+      .ranking-number {
+        font-size: 24px;
+        font-weight: bold;
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        color: #004cdd;
+        background-color: #fff;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid #004cdd;
+      }
+      .product-description li {
+      padding: 1px; /* 添加内边距 */
+    }
+  
+      .best-label {
+        position: absolute;
+        right: 2px;
+      }
+      .best-label img {
+        height: 30px;
+      }
+      .product-best{
+     display: none; 
+    }
+    .product-best.mobile-layout{
+      display: block;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #9b1717;
+      color: #FFFFFF;
+      text-align: center;
+      border-top-left-radius: 10px;  /* 左上角圆弧 */
+      border-top-right-radius: 10px; /* 右上角圆弧 */
+      
+    }
+     
+    }
+    
+  
+    @media (min-width: 769px) {
+      .mobile-layout {
+        display: none; /* 隐藏移动端的布局 */
+      }
+    }
+  
+    .mobile-layout.first-place {
+      border: 4px solid #3bd11c; /* 应用第一名的边框颜色 */
+    }
+  
+    .content h2, .content h3 {
+        color: #2c3e50; /* 更改标题颜色为深蓝色 */
+    }
+    .content img {
+        display: block;
+        margin: 20px auto;
+        max-width: 100%;
+    }
+    .customer-reviews {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 40px;
+    }
+    .customer-reviews h3 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+    .review {
+        margin-bottom: 20px;
+        padding: 15px;
+        border-left: 4px solid #4CAF50;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+    .review strong {
+        display: block;
+        margin-top: 10px;
+        color: #555;
+    }
+    /* Enhance modal style */
+    .modal-content {
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    .modal-header {
+        background-color: #4CAF50;
+        color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .modal-footer {
+        border-top: none;
+    }
+    /* Enhance Results and Order sections */
+    h3 {
+        color: #4CAF50;
+        margin-top: 30px;
+    }
+    ol {
+        padding-left: 20px;
+        list-style-type: decimal;
+    }
+    ol li {
+        margin-bottom: 10px;
+    }
+    .results-section, .order-section {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+    /* Center the modal on the screen */
+    .modal-dialog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+    }
+    /* Ensure the close button works */
+    .close {
+        cursor: pointer;
+    }
+    /* Adjust modal to not cover the entire page */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        z-index: 1050;
+    }
+    .modal-dialog {
+        margin: 30px auto;
+    }
+    @media (max-width: 768px) {
+        .order-section {
+            padding: 10px; /* 减少内边距以适应小屏幕 */
+            font-size: 14px; /* 调整字体大小 */
+        }
+        .order-section ol {
+            padding-left: 15px; /* 减少列表的左边距 */
+        }
+        .order-section ol li {
+            margin-bottom: 8px; /* 减少列表项的底部外边距 */
+        }
+    }
+    .order-section {
+        max-width: 100%; /* 确保内容不超出屏幕宽度 */
+        overflow-x: auto; /* 允许水平滚动 */
+    }
+    .center-image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    </style>
+</head>
+<body>
+    <!-- Remove Welcome Modal -->
+    <!-- Product 1 Modal -->
+    <div id="product1Modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Esaver - The Top Power Stabilizer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="text-align: center;">
+                    <img src="img/eSaver.png" alt="Esaver" style="width:50%; margin-bottom: 15px;">
+                    <p>立即享受50%的折扣优惠！</p>
+                    <p>Esaver 是市场上最好的电力稳定器，帮助您节省能源并保护您的设备。</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="click/1" class="buy-button" style="text-align: center; width: 100%; box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;">立即购买</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="banner">Limited Time Offer: Get 50% OFF on Esaver!</div>
+        <h1 style="text-align: center;">Top 5 Power Savers of 2025</h1>
+        <br>
+        <p>With electricity costs on the rise, I decided to put the best-selling energy-saving devices of 2025 to the test. My goal? To find the most effective solution for reducing bills, protecting appliances, and improving overall energy efficiency.</p>
+        <p>The ideal energy-saving device should optimize power consumption, be simple to use, and require no complicated installation. Most importantly, it needs to work effectively across various types of homes and businesses.</p>
+        <p>After rigorous testing, I identified the top 5 devices – and one clear winner stood out from the rest.</p>
+        <img src="img/StopWatt-Energy-Saver.png" alt="Esaver Benefits">
+        <h2>Our Top 5 Picks</h2>
+        <div class="product-ranking"><!-- 排行框 -->
+            <div class="product-item first-place"><!-- 排名序号 -->
+            <div class="ranking-number">1</div>
+            <!-- 产品图片 -->
+            <div class="product-section">
+            <div class="product-image"><img src="img/eSaver.png" alt="产品1" /></div>
+            </div>
+            <!-- 产品信息：标题和描述 -->
+            <div class="product-section">
+            <div class="product-info">
+            <h3>Esaver - The Top Power Stabilizer</h3>
+            <ul class="product-description">
+            <li><span class="checkmark">✅</span> Reduces Your Energy Bill</li>
+            <li><span class="checkmark">✅</span> Protects Your Appliances</li>
+            <li><span class="checkmark">✅</span> Stabilizes Home Current</li>
+            <li><span class="checkmark">✅</span> Smooth &amp; Stable Electrical Current</li>
+            <li><span class="checkmark">✅</span> Lower Energy Consumption</li>
+            <li><span class="checkmark">✅</span> Easy Setup</li>
+            <li><span class="checkmark">✅</span> Safe &amp; Reliable</li>
+            <li><span class="checkmark">✅</span> Sleek Design</li>
+            <li><span class="checkmark">✅</span> 60-Day Money Back Guarantee</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Regularly runs out of stock</li>
+            </ul>
+            </div>
+            </div>
+            <!-- 评分与产品引导按钮 -->
+            <div class="product-section">
+            <div class="product-rating">
+            <h1>9.8</h1>
+            <p>Excellent</p>
+            <small class="text-muted">User Ratings (13,327)</small>
+            <div class="stars"> </div>
+            <a style="text-decoration: none; width: 100%;" href="click/1"> <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;"> BUY NOW <i class="fa fa-arrow-right"></i> <span class="tooltip" style="position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%); background-color: #9b1717; color: #ffffff; padding: 10px; border-radius: 5px; font-size: 12px; white-space: nowrap;"> 50% OFF Sale </span> </button> </a></div>
+            </div>
+            <!-- 最好的标记 -->
+            <div class="best-label"><img src="img/limited-offer-smaller.png" alt="Best" /></div>
+            </div>
+            <div class="product-item">
+            <div class="ranking-number">2</div>
+            <div class="product-section">
+            <div class="product-image"><img src="img/stopwatt.jpg" alt="产品2" /></div>
+            </div>
+            <div class="product-section">
+            <div class="product-info">
+            <h3>StopWatt - Great For Power Distribution</h3>
+            <ul class="product-description">
+            <li><span class="checkmark">✅</span> Simple to use immediately</li>
+            <li><span class="checkmark">✅</span> For any home size</li>
+            <li><span class="checkmark">✅</span> Pay what you consume</li>
+            <li><span class="checkmark">✅</span> No costly maintenance needed</li>
+            <li><span class="checkmark">✅</span> Easy to install</li>
+            <li><span class="checkmark">✅</span> Save the planet – eco-friendly</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Limited stock</li>
+            <li><span class="checkmark" style="color: red;">❌</span> More expensive than Esaver</li>
+            </ul>
+            </div>
+            </div>
+            <div class="product-section">
+            <div class="product-rating">
+            <h1>9.1</h1>
+            <p>Very Good</p>
+            <small class="text-muted">User Ratings (8,765)</small>
+            <div class="stars"> </div>
+            <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;" onclick="window.location.href='click/2'">BUY NOW<i class="fa fa-arrow-right"></i></button></div>
+            </div>
+            </div>
+            <div class="product-item">
+            <div class="ranking-number">3</div>
+            <div class="product-section">
+            <div class="product-image"><img src="img/greenwave.jpg" alt="产品3" /></div>
+            </div>
+            <div class="product-section">
+            <div class="product-info">
+            <h3>Greenwave</h3>
+            <ul class="product-description">
+            <li><span class="checkmark">✅</span> Prevents Power Surges</li>
+            <li><span class="checkmark">✅</span> Stabilizes Home Current</li>
+            <li><span class="checkmark">✅</span> Easy Setup</li>
+            <li><span class="checkmark">✅</span> Boosts Efficiency</li>
+            <li><span class="checkmark">✅</span> Nice Design</li>
+            <li><span class="checkmark">✅</span> Easy Install</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Expensive</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Need One For Each Device</li>
+            </ul>
+            </div>
+            </div>
+            <div class="product-section">
+            <div class="product-rating">
+            <h1>8.5</h1>
+            <p>Good</p>
+            <small class="text-muted">User Ratings (5,432)</small>
+            <div class="stars"> </div>
+            <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;" onclick="window.location.href='click/3'">BUY NOW<i class="fa fa-arrow-right"></i></button></div>
+            </div>
+            </div>
+            <div class="product-item">
+            <div class="ranking-number">4</div>
+            <div class="product-section">
+            <div class="product-image"><img src="img/heuwa.jpg" alt="产品4" /></div>
+            </div>
+            <div class="product-section">
+            <div class="product-info">
+            <h3>Heunwa</h3>
+            <ul class="product-description">
+            <li><span class="checkmark">✅</span> Built-In Power Surge Alarm</li>
+            <li><span class="checkmark">✅</span> Eliminates Idle Power Usage</li>
+            <li><span class="checkmark">✅</span> Stabilizes Home Current</li>
+            <li><span class="checkmark">✅</span> Easy Setup</li>
+            <li><span class="checkmark">✅</span> Prevents Voltage Spikes</li>
+            <li><span class="checkmark">✅</span> Appliance Protection</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Bulky</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Small Radius</li>
+            </ul>
+            </div>
+            </div>
+            <div class="product-section">
+            <div class="product-rating">
+            <h1>7.8</h1>
+            <p>Decent</p>
+            <small class="text-muted">User Ratings (4,321)</small>
+            <div class="stars"> </div>
+            <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;" onclick="window.location.href='click/4'">BUY NOW<i class="fa fa-arrow-right"></i></button></div>
+            </div>
+            </div>
+            <div class="product-item">
+            <div class="ranking-number">5</div>
+            <div class="product-section">
+            <div class="product-image"><img src="img/yipiner.jpg" alt="产品5" /></div>
+            </div>
+            <div class="product-section">
+            <div class="product-info">
+            <h3>Yipiner</h3>
+            <ul class="product-description">
+            <li><span class="checkmark">✅</span> Helps Prevent Electrical Fires</li>
+            <li><span class="checkmark">✅</span> Boosts Energy Efficiency</li>
+            <li><span class="checkmark">✅</span> Stabilizes Home Current</li>
+            <li><span class="checkmark">✅</span> Easy Setup</li>
+            <li><span class="checkmark">✅</span> Reliable</li>
+            <li><span class="checkmark">✅</span> Glows At Night</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Sub-Par Quality</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Small Radius</li>
+            </ul>
+            </div>
+            </div>
+            <div class="product-section">
+            <div class="product-rating">
+            <h1>7.1</h1>
+            <p>Decent</p>
+            <small class="text-muted">User Ratings (3,210)</small>
+            <div class="stars"> </div>
+            <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;" onclick="window.location.href='click/5'">BUY NOW<i class="fa fa-arrow-right"></i></button></div>
+            </div>
+            </div>
+            <!-- 产品1重复引导 -->
+            <div class="product-best">Best Overall Power Saver</div>
+            <div class="product-item"><!-- 排名序号 -->
+            <div class="product-section" style="display: none;"> </div>
+            <!-- 产品图片 -->
+            <div class="product-section">
+            <div class="product-image"><img src="img/eSaver.png" alt="产品1" /></div>
+            </div>
+            <!-- 产品信息：标题和描述 -->
+            <div class="product-section">
+            <div class="product-info">
+            <h3>Esaver - The Top Power Stabilizer</h3>
+            <ul class="product-description">
+            <li><span class="checkmark">✅</span> Reduces Your Energy Bill</li>
+            <li><span class="checkmark">✅</span> Protects Your Appliances</li>
+            <li><span class="checkmark">✅</span> Stabilizes Home Current</li>
+            <li><span class="checkmark">✅</span> Smooth &amp; Stable Electrical Current</li>
+            <li><span class="checkmark">✅</span> Lower Energy Consumption</li>
+            <li><span class="checkmark">✅</span> Easy Setup</li>
+            <li><span class="checkmark">✅</span> Safe &amp; Reliable</li>
+            <li><span class="checkmark">✅</span> Sleek Design</li>
+            <li><span class="checkmark">✅</span> 60-Day Money Back Guarantee</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Regularly runs out of stock</li>
+            </ul>
+            </div>
+            </div>
+            <!-- 评分与产品引导按钮 -->
+            <div class="product-section">
+            <div class="product-rating">
+            <h1>9.8</h1>
+            <p>Excellent</p>
+            <small class="text-muted">User Ratings (13,327)</small>
+            <div class="stars"> </div>
+            <a style="text-decoration: none; width: 100%;" href="click/1"> <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;"> BUY NOW <i class="fa fa-arrow-right"></i> <span class="tooltip" style="position: absolute; bottom: -50px; left: 50%; transform: translateX(-50%); background-color: #9b1717; color: #ffffff; padding: 10px; border-radius: 5px; font-size: 12px; white-space: nowrap;"> 50% OFF Sale </span> </button> </a></div>
+            </div>
+            <!-- 最好的标记 -->
+            <div class="best-label"><img src="img/limited-offer-smaller.png" alt="Best" /></div>
+            </div>
+            <!-- 产品1重复引导 -->
+            <div class="product-item mobile-layout first-place">
+            <div class="ranking-number">1</div>
+            <h3>Esaver - The Top Power Stabilizer</h3>
+            <div class="mobile-image-rating">
+            <div class="product-image"><img src="img/eSaver.png" alt="产品1" /></div>
+            <div class="product-rating">
+            <h1>9.8</h1>
+            <p>Excellent</p>
+            <small class="text-muted">User Ratings (13,327)</small>
+            <div class="stars"> </div>
+            </div>
+            </div>
+            <ul class="product-description">
+            <li><span class="checkmark">✅</span> Reduces Your Energy Bill</li>
+            <li><span class="checkmark">✅</span> Protects Your Appliances</li>
+            <li><span class="checkmark">✅</span> Stabilizes Home Current</li>
+            <li><span class="checkmark">✅</span> Smooth &amp; Stable Electrical Current</li>
+            <li><span class="checkmark">✅</span> Lower Energy Consumption</li>
+            <li><span class="checkmark">✅</span> Easy Setup</li>
+            <li><span class="checkmark">✅</span> Safe &amp; Reliable</li>
+            <li><span class="checkmark">✅</span> Sleek Design</li>
+            <li><span class="checkmark">✅</span> 60-Day Money Back Guarantee</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Regularly runs out of stock</li>
+            </ul>
+            <a style="text-decoration: none; width: 100%;" href="click/1"> <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;"> BUY NOW<i class="fa fa-arrow-right"></i> <span class="tooltip" style="position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); background-color: #9b1717; color: #ffffff; padding: 10px; border-radius: 5px; font-size: 12px; white-space: nowrap;"> 50% OFF Sale </span> </button> </a>
+            <div class="best-label"><img src="img/limited-offer-smaller.png" alt="Best" /></div>
+            </div>
+            <div class="product-item mobile-layout">
+            <div class="ranking-number">2</div>
+            <h3>StopWatt - Great For Power Distribution</h3>
+            <div class="mobile-image-rating">
+            <div class="product-image"><img src="img/StopWatt.jpg" alt="产品2" /></div>
+            <div class="product-rating">
+            <h1>9.1</h1>
+            <p>Very Good</p>
+            <small class="text-muted">User Ratings (8,765)</small>
+            <div class="stars"> </div>
+            </div>
+            </div>
+            <ul class="product-description">
+            <li><span class="checkmark">✅</span> Simple to use immediately</li>
+            <li><span class="checkmark">✅</span> For any home size</li>
+            <li><span class="checkmark">✅</span> Pay what you consume</li>
+            <li><span class="checkmark">✅</span> No costly maintenance needed</li>
+            <li><span class="checkmark">✅</span> Easy to install</li>
+            <li><span class="checkmark">✅</span> Save the planet – eco-friendly</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Limited stock</li>
+            <li><span class="checkmark" style="color: red;">❌</span> More expensive than Esaver</li>
+            </ul>
+            <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;" onclick="window.location.href='click/2'"> BUY NOW<i class="fa fa-arrow-right"></i></button></div>
+            <div class="product-item mobile-layout">
+            <div class="ranking-number">3</div>
+            <h3>Greenwave</h3>
+            <div class="mobile-image-rating">
+            <div class="product-image"><img src="img/greenwave.jpg" alt="产品3" /></div>
+            <div class="product-rating">
+            <h1>8.5</h1>
+            <p>Good</p>
+            <small class="text-muted">User Ratings (5,432)</small>
+            <div class="stars"> </div>
+            </div>
+            </div>
+            <ul class="product-description">
+            <li><span class="checkmark">✅</span> Prevents Power Surges</li>
+            <li><span class="checkmark">✅</span> Stabilizes Home Current</li>
+            <li><span class="checkmark">✅</span> Easy Setup</li>
+            <li><span class="checkmark">✅</span> Boosts Efficiency</li>
+            <li><span class="checkmark">✅</span> Nice Design</li>
+            <li><span class="checkmark">✅</span> Easy Install</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Expensive</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Need One For Each Device</li>
+            </ul>
+            <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;" onclick="window.location.href='click/3'"> BUY NOW<i class="fa fa-arrow-right"></i></button></div>
+            <div class="product-item mobile-layout">
+            <div class="ranking-number">4</div>
+            <h3>Heunwa</h3>
+            <div class="mobile-image-rating">
+            <div class="product-image"><img src="img/heuwa.jpg" alt="产品4" /></div>
+            <div class="product-rating">
+            <h1>7.8</h1>
+            <p>Decent</p>
+            <small class="text-muted">User Ratings (4,321)</small>
+            <div class="stars"> </div>
+            </div>
+            </div>
+            <ul class="product-description">
+            <li><span class="checkmark">✅</span> Built-In Power Surge Alarm</li>
+            <li><span class="checkmark">✅</span> Eliminates Idle Power Usage</li>
+            <li><span class="checkmark">✅</span> Stabilizes Home Current</li>
+            <li><span class="checkmark">✅</span> Easy Setup</li>
+            <li><span class="checkmark">✅</span> Prevents Voltage Spikes</li>
+            <li><span class="checkmark">✅</span> Appliance Protection</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Bulky</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Small Radius</li>
+            </ul>
+            <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;" onclick="window.location.href='click/4'"> BUY NOW<i class="fa fa-arrow-right"></i></button></div>
+            <div class="product-item mobile-layout">
+            <div class="ranking-number">5</div>
+            <h3>Yipiner</h3>
+            <div class="mobile-image-rating">
+            <div class="product-image"><img src="img/yipiner.jpg" alt="产品5" /></div>
+            <div class="product-rating">
+            <h1>7.1</h1>
+            <p>Decent</p>
+            <small class="text-muted">User Ratings (3,210)</small>
+            <div class="stars"> </div>
+            </div>
+            </div>
+            <ul class="product-description">
+            <li><span class="checkmark">✅</span> Helps Prevent Electrical Fires</li>
+            <li><span class="checkmark">✅</span> Boosts Energy Efficiency</li>
+            <li><span class="checkmark">✅</span> Stabilizes Home Current</li>
+            <li><span class="checkmark">✅</span> Easy Setup</li>
+            <li><span class="checkmark">✅</span> Reliable</li>
+            <li><span class="checkmark">✅</span> Glows At Night</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Sub-Par Quality</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Small Radius</li>
+            </ul>
+            <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;" onclick="window.location.href='click/5'"> BUY NOW<i class="fa fa-arrow-right"></i></button></div>
+            </div>
+            <!-- 产品1重复引导 -->
+            <div class="product-best mobile-layout">Best Overall Power Saver</div>
+            <div class="product-item mobile-layout first-place">
+            <h3>Esaver - The Top Power Stabilizer</h3>
+            <div class="mobile-image-rating">
+            <div class="product-image"><img src="img/eSaver.png" alt="产品1" /></div>
+            <div class="product-rating">
+            <h1>9.8</h1>
+            <p>Excellent</p>
+            <small class="text-muted">User Ratings (13,327)</small>
+            <div class="stars"> </div>
+            </div>
+            </div>
+            <ul class="product-description">
+            <li><span class="checkmark">✅</span> Reduces Your Energy Bill</li>
+            <li><span class="checkmark">✅</span> Protects Your Appliances</li>
+            <li><span class="checkmark">✅</span> Stabilizes Home Current</li>
+            <li><span class="checkmark">✅</span> Smooth &amp; Stable Electrical Current</li>
+            <li><span class="checkmark">✅</span> Lower Energy Consumption</li>
+            <li><span class="checkmark">✅</span> Easy Setup</li>
+            <li><span class="checkmark">✅</span> Safe &amp; Reliable</li>
+            <li><span class="checkmark">✅</span> Sleek Design</li>
+            <li><span class="checkmark">✅</span> 60-Day Money Back Guarantee</li>
+            <li><span class="checkmark" style="color: red;">❌</span> Regularly runs out of stock</li>
+            </ul>
+            <a style="text-decoration: none; width: 100%;" href="click/1"> <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;"> BUY NOW<i class="fa fa-arrow-right"></i> <span class="tooltip" style="position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); background-color: #9b1717; color: #ffffff; padding: 10px; border-radius: 5px; font-size: 12px; white-space: nowrap;"> 50% OFF Sale </span> </button> </a>
+            <div class="best-label"><img src="img/limited-offer-smaller.png" alt="Best" /></div>
+            </div>
+            <!-- 产品1重复引导 -->
+          
+
+        <h2>We have a winner!</h2>
+        <h3>Best Overall Power Saver</h3>
+        <p>Esaver is a groundbreaking invention designed with two objectives: Protect your devices from permanent damage and save you big on energy bills.</p>
+        <img src="img/1-pic2.jpg" alt="Esaver Benefits">
+        <p>Esaver serves as a power stabilizer. What that means is that it maximizes the effectiveness of your electric output while eliminating electrical waste. This reduces unnecessary consumption, safeguarding your devices from harm and keeping some extra cash in your pocket!</p>
+        <p>And not just that. By saving energy, you are actively contributing towards our planet's sustainability!</p>
+        <p>Sounds complicated? Don't worry. Esaver is extremely easy to use. Simply plug it into an electrical socket, and you're good to go! You can experience all its incredible benefits with ease!</p>
+        <p><button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;" onclick="window.location.href='click/1'">GET 50% DISCOUNT! ONLY $49!</button></p>
+
+        <h2>FAQs</h2>
+        <ul>
+            <li><strong>Is Esaver safe to use?</strong> Absolutely! It's designed with safety as a top priority. Its fireproof materials and surge protection ensure accidents.</li>
+            <li><strong>How hard is it to install?</strong> Simply plug it into an electrical socket.</li>
+            <li><strong>When will I start seeing results?</strong> Typically, it takes around 2-3 weeks for Esaver to stabilize the electrical current and filter out dirty electricity. You will start noticing the optimal results after 6-8 weeks.</li>
+            <li><strong>Can Esaver help reduce my carbon footprint?</strong> Of course! By optimizing energy consumption and reducing waste power, it promotes energy efficiency and sustainability.</li>
+        </ul>
+        
+        <h2>Meet Our Expert</h2>
+        <p><strong>Jane Griffin</strong> is a passionate engineer dedicated to unraveling the mysteries of energy economy and helping people reduce their electricity bills. With a deep understanding of sustainable energy solutions and cost-saving strategies, Jane empowers her readers with practical tips and insights. Through her engaging articles, she aims to create a greener and more affordable future, one kilowatt at a time. Join Jane on her journey to unlock the secrets of energy efficiency.</p>
+
+        <h2>Esaver: A Comprehensive Review</h2>
+        <p>The first thing that caught my attention about Esaver was its overwhelming number of positive reviews.</p>
+        <p>With 26,198 positive reviews from satisfied customers, it's clear that this device has transformed energy savings for countless homes and businesses.</p>
+        <p>Customers consistently praise Esaver for its ability to reduce energy bills, protect appliances, and streamline energy consumption – all with a simple plug-and-play setup.</p>
+        <p>Esaver was developed to address a pressing issue: rising electricity costs and the damage caused by unstable power surges. By stabilizing electrical flow and eliminating wasted energy, it offers a practical, eco-friendly solution that works for everyone.</p>
+        <img src="img/Energy-Saver-How-It-Works.png" alt="Esaver Benefits">
+        <p>When my Esaver arrived, the packaging was sleek and high-quality. Inside was the compact, surprisingly lightweight device, along with a clear and user-friendly guide.</p>
+        <p>Setting it up took just seconds, and I couldn't wait to see how it performed during my testing process.</p>
+        <h3>My Test Results</h3>
+        <p>The first thing I tested with Esaver was how easy it is to set up.</p>
+        <p>True to its promise, the device was incredibly simple to use – just plug it into a power socket, and it immediately began stabilizing my home's electrical flow.</p>
+        <p>From there, I monitored its performance over several weeks using monthly energy reports and an electricity usage meter. The results were impressive. By the end of the first month, Esaver reduced my energy bill by nearly 26%, saving me A$98.54.</p>
+        <p>Seeing such measurable savings in just a few weeks was incredibly satisfying!</p>
+        <p>Esaver didn't just save money – it also improved how my appliances functioned.</p>
+        <p>My gaming console, which often restarts during power fluctuations, worked flawlessly throughout the testing period. Kitchen appliances like my microwave and refrigerator also ran more efficiently, with no disruptions or glitches.</p>
+        <p>I also tested Esaver in different areas of my home, including high-demand zones like the kitchen and quieter spaces like my office. It adapted seamlessly to every socket, stabilizing power flow without requiring adjustments.</p>
+        <p>When compared to 16 other energy-saving devices I tested, Esaver consistently outperformed the competition.</p>
+        <h3>Results:</h3>
+        <div class="results-section">
+            <ol>
+                <li><strong>Energy optimization:</strong> While many devices claim to reduce wasted energy, Esaver delivered real, measurable results. It stabilized power flow across all types of appliances, from high-energy kitchen devices to sensitive electronics like laptops and TVs. Competing devices struggled with consistent performance, especially in high-demand areas.</li>
+                <li><strong>Reduced energy bills:</strong> Esaver saved me nearly 26% on my energy bill in just one month – far more than the average 10-15% savings I observed with other devices. For households and small businesses looking to significantly cut electricity costs, Esaver is in a league of its own.</li>
+                <li><strong>Device protection:</strong> Unlike most of competitors that only reduce energy waste, Esaver actively protects your appliances from voltage surges and power fluctuations. During the testing period, my gaming console and refrigerator worked seamlessly, while a majority of competing devices failed to prevent occasional glitches or resets.</li>
+                <li><strong>Convenience:</strong> Esaver's plug-and-play design made it the easiest device to install – no tools or adjustments required. Many other devices required complex setups or performed inconsistently depending on the socket or environment. Esaver worked flawlessly in every room, adapting to each electrical setup without any effort on my part.</li>
+                <li><strong>Versatility and design:</strong> Competing devices were often bulky and obtrusive, but Esaver's compact and discreet design allowed it to blend into any room. It delivered the same outstanding results in both high-demand areas like the kitchen and quieter spaces like the office.</li>
+            </ol>
+            <video autoplay loop muted style="width: 100%; margin-top: 20px;">
+              <source src="img/Saver.mp4" type="video/mp4">
+              
+          </video>
+        </div>
+        
+        <h3>Value</h3>
+        <p>Energy-saving devices are often expensive, with some priced well over A$200, making them out of reach for many households and small businesses.</p>
+        <p>Esaver changes the game by offering premium energy optimization technology at a price that's accessible to almost everyone.</p>
+        <p>Right now, you can get Esaver for just A$89.99, thanks to an exclusive 60% discount. It's one of the most cost-effective ways to cut down on your electricity bills while protecting your valuable appliances from power surges.</p>
+        <p>Want to save even more?</p>
+        <p>Esaver's bundle deals are perfect for optimizing energy use in multiple rooms or sharing the benefits with loved ones. A two-device pack is available for only A$157.98, giving you a massive 65% discount – ideal for energy-conscious households to maximize savings.</p>
+        <p>Esaver delivers high-performance energy savings at a fraction of the cost, making it the smart choice for anyone looking to lower expenses and protect their devices.</p>
+        <br>
+        <p><button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;" onclick="window.location.href='click/1'">GET 50% DISCOUNT! ONLY $49!</button></p>
+        <br>
+        <h3>Technology that Helps You Save Energy and the Planet</h3>
+        <p>Esaver uses advanced Electricity Stabilizing Technology (EST) to optimize your home's energy use, cutting waste and reducing your environmental impact.</p>
+        <p>Every home relies on electricity, but most power systems are inefficient.</p>
+        <p>Dirty electricity – unnecessary fluctuations and noise – wastes energy and harms your appliances. Esaver fixes this by cleaning and stabilizing your power supply, ensuring your devices only use what they need.</p>
+        <p>This means less energy wasted and fewer harmful emissions generated during electricity production.</p>
+        <p>Voltage surges are another common issue in homes.</p>
+        <p>They don't just damage appliances – they waste significant amounts of energy, putting unnecessary strain on the grid. Esaver neutralizes these surges, smoothing out your power flow and improving overall efficiency.</p>
+        <p>Finally, all the energy you save at home contributes to a cleaner planet by reducing fossil fuel demand and greenhouse gas emissions. And Esaver makes it happen.</p>
+        
+        <h3>Customer Reviews</h3>
+        <div class="customer-reviews">
+            <div class="review">
+                <p>I was skeptical at first, but within the first month, I noticed a pretty big drop in my energy that saved me A$60! For a family of four with lots of appliances running all the time, this has really helped us out so much. We're finally seeing some relief from rising energy costs!</p>
+                <strong>Jack Thompson – Sydney</strong>
+            </div>
+            <div class="review">
+                <p>Our home has always had issues with sudden power spikes, and I can't count the number of times my appliances have stopped working because of it. Since plugging in Esaver, I haven't had a single issue. Everything runs smoothly now, and I feel so much more confident that my expensive electronics are safe.</p>
+                <strong>Emily Johnson – Melbourne</strong>
+            </div>
+            <div class="review">
+                <p>What I love most about Esaver is knowing I'm reducing waste and not just on my energy bills but also for the environment. It feels good to know that my home is running more efficiently and that I'm making a small difference for the planet. Plus, saving over A$80 in my first month doesn't hurt either!</p>
+                <strong>Liam Harris – Brisbane</strong>
+            </div>
+        </div>
+        <h3>Purchase and Delivery Process</h3>
+        <p>Purchasing Esaver is quick, easy, and hassle-free. To keep prices low, this energy saver is available exclusively online – no retail markups or unnecessary costs.</p>
+        <p>The company offers fast and reliable worldwide delivery, so wherever you are, you can start enjoying lower energy bills in no time. My order arrived in just 4 business days, making it one of the fastest deliveries I experienced!</p>
+        <p>The best part?</p>
+        <p>The 75% discount is automatically applied at checkout, making Esaver an unbeatable value.</p>
+        <p>Plus, the bundle deals make it easy to optimize multiple areas of your home or share the benefits with family. It's the perfect solution for energy-conscious households looking to make the most out of their purchase.</p>
+        <h3>Where Can I Buy the Esaver Energy Saver?</h3>
+        <p>Getting Esaver is as simple as it gets, and right now, you can take advantage of an exclusive 75% discount to start saving on your energy bills immediately.</p>
+        <h3>Here's how to order:</h3>
+        <div class="order-section">
+            <ol>
+                <li>Visit the official Esaver website;</li>
+                <li>Select the number of devices you want to purchase;</li>
+                <li>Enter your shipping details and payment method;</li>
+                <li>Sit back and relax while Esaver is delivered to your doorstep!</li>
+            </ol>
+        </div>
+        <br>
+        <button class="buy-button" style="box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.8); position: relative;" onclick="window.location.href='click/1'">GET 50% DISCOUNT! ONLY $49!</button> 
+    </div>
+   
+  <footer style="background-color: #f8f9fa; padding: 20px; text-align: center; margin-top: 40px;">
+    <div style="display: inline-block;">
+        <a href="privacy.html" style="margin-right: 15px;">Privacy Policy</a>
+        <a href="terms.html" style="margin-right: 15px;">Terms of Use</a>
+        <a href="about.html" style="margin-right: 15px;">About Us</a>
+        <a href="advertising.html" style="margin-right: 15px;">Advertising </a>
+
+        <p style="color:#b8b8b8; padding-top: 20px;" >
+          This site is a free online resource that strives to offer helpful content and comparison 
+          features to its visitors. Please be advised that the operator of this site accepts 
+          advertising compensation from companies that appear on the site, and such compensation 
+          impacts the location and order in which the companies (and/or their products) are presented,
+           and in some cases may also impact the rating that is assigned to them. To the extent that
+            ratings appear on this site, such rating is determined by our subjective opinion and based 
+            on a methodology that aggregates our analysis of brand market share and reputation, each 
+            brand’s conversion rates, compensation paid to us and general consumer interest. Company
+             listings on this page DO NOT imply endorsement. Except as expressly set forth in our 
+             Terms of Use, all representations and warranties regarding the information presented 
+             on this page are disclaimed. The information, including pricing, which appears on this 
+             site is subject to change at any time.
+        </p>
+    </div>
+    <p style="margin-top: 10px;">Copyright © 2025 | All Rights Reserved.</p>
+</footer>
+    <script>
+      $(document).ready(function() {
+          // Ensure product 1 modal shows after 5 seconds the first time
+          setTimeout(function() {
+              $('#product1Modal').modal('show');
+              // Set a timeout for the second display
+              setTimeout(function() {
+                  $('#product1Modal').modal('show');
+              }, 15000); 
+          }, 8000); 
+          // Ensure the close button works
+          $('.close').click(function() {
+              $('#product1Modal').modal('hide');
+          });
+      });
+  </script>
+  <!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
